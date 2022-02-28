@@ -1,0 +1,21 @@
+import os
+import sys
+folder = ".import"
+for count, filename in enumerate(os.listdir(folder)):
+    dst = f"{str(count)}.stex"
+    filename =f"{folder}/{dst}"
+    inputFile = open(filename, 'rb')
+    outputFile = open(filename + '-output.png', 'wb')
+
+    inputFile.seek(32)
+
+    while 1:
+        #read by char
+        char = inputFile.read(1)
+        outputFile.write(char)
+        
+        if not char:
+            break
+
+    inputFile.close()
+    outputFile.close()     
