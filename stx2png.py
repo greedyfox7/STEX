@@ -1,0 +1,21 @@
+import sys
+if len(sys.argv) > 1:
+    filename = sys.argv[1]
+    inputFile = open(filename, 'rb')
+    outputFile = open(filename + '-output.png', 'wb')
+
+    # 32 bits is based off the .stex header which are trimmed for png
+    inputFile.seek(32)
+
+    while 1:
+        #read by char
+        char = inputFile.read(1)
+        outputFile.write(char)
+        
+        if not char:
+            break
+
+    inputFile.close()
+    outputFile.close()
+else:
+    print("Usage: python godot-stex-to-png.py input.stex (py std.py 1.ste)")
